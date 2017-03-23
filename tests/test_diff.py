@@ -87,7 +87,10 @@ class TestCompareFiles(unittest.TestCase):
 
     def setUp(self):
         self.data_dir = os.path.join(os.path.dirname(__file__), 'data')
-        os.makedirs(self.data_dir, exist_ok=True)
+        try:
+            os.makedirs(self.data_dir)
+        except OSError:
+            pass
 
         self.json_file1 = os.path.join(self.data_dir, 'file1.json')
         sample_dict_1 = {'a': 1, 'b': 2}

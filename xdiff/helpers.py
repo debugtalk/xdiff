@@ -51,7 +51,10 @@ def load_file(file_path, file_suffix='.json'):
 
 def save_to_yaml(data, filepath):
     file_dir = os.path.dirname(filepath)
-    os.makedirs(file_dir, exist_ok=True)
+    try:
+        os.makedirs(file_dir)
+    except OSError:
+        pass
     with open(filepath, 'w+') as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
 

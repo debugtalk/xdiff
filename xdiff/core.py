@@ -1,13 +1,13 @@
 import os
 import time
 import hashlib
-import queue
+from queue import Queue
 import yaml
 import json
 import threading
 from . import helpers
 
-files_compare_queue = queue.Queue()
+files_compare_queue = Queue()
 changed_content_dict = {}
 
 def compare_content(origin_data, new_data):
