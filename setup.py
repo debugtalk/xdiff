@@ -7,19 +7,18 @@ from setuptools import setup, find_packages
 with open(os.path.join(os.path.dirname(__file__), 'xdiff', '__init__.py')) as f:
     version = re.compile(r"__version__\s+=\s+'(.*)'", re.I).match(f.read()).group(1)
 
-def load_file(filepath):
-    with open(filepath) as f:
-        return f.read()
+with open('README.md') as f:
+    long_description = f.read()
 
 setup(
     name='xdiff',
     version=version,
     description='A CLI tool to compare data structures, files, folders, http responses, etc.',
-    long_description=load_file('README.md'),
+    long_description=long_description,
     author='Leo Lee',
     author_email='mail@debugtalk.com',
     url='https://github.com/debugtalk/xdiff.git',
-    license=load_file('LICENSE'),
+    license='MIT',
     packages=find_packages(exclude=['tests']),
     install_requires=[
         'termcolor',
