@@ -4,21 +4,13 @@ A CLI tool to compare data structures, files, folders, http responses, etc.
 
 ## Install
 
-Install dependencies.
-
-```bash
-$ pip install -r requirements.txt
-```
-
-Install `xdiff` CLI command.
-
 ```bash
 $ python setup.py install
 ```
 
 ## Usage
 
-```bash
+```text
 $ xdiff -h
 usage: xdiff [-h] [--log-level LOG_LEVEL]
              [--compare-files COMPARE_FILES [COMPARE_FILES ...]]
