@@ -21,6 +21,10 @@ def color_logging(text, log_level='info', color=None):
         color = color or 'red'
         logging.error(colored(text, color, attrs=['bold']))
 
+def load_plain_file(file_path):
+    with open(file_path, 'r+') as f:
+        return f.read()
+
 def load_json_file(json_file):
     with open(json_file, 'r+') as f:
         return f.read()
@@ -31,7 +35,7 @@ def load_yaml_file(yaml_file):
 
 def get_md5(content):
     if isinstance(content, str):
-        content = content.encode('utf-8')
+        content = content.decode('utf-8').encode('utf-8')
     return hashlib.md5(content).hexdigest()
 
 def load_file(file_path, file_suffix='.json'):
@@ -46,6 +50,13 @@ def load_file(file_path, file_suffix='.json'):
         content = load_yaml_file(file_path)
         return {
             'md5': get_md5(json.dumps(content)),
+            'json': content
+        }
+    else:
+        # file_suffix == ''
+        content = load_plain_file(file_path)
+        return {
+            'md5': get_md5(content),
             'json': content
         }
 

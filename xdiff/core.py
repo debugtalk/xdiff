@@ -1,13 +1,13 @@
 import os
 import time
 import hashlib
-from queue import Queue
+import queue
 import yaml
 import json
 import threading
 from . import helpers
 
-files_compare_queue = Queue()
+files_compare_queue = queue.Queue()
 changed_content_dict = {}
 
 def compare_content(origin_data, new_data):
@@ -109,6 +109,7 @@ def compare_folder_files(origin_folder, new_folder, concurrent_num=10):
             target=worker_compare,
             args=()
         )
+        thread.daemon = False
         thread.start()
 
     files_compare_queue.join()
