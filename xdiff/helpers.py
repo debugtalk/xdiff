@@ -27,12 +27,8 @@ def color_logging(text, log_level='info', color=None):
         color = color or 'red'
         logging.error(colored(text, color, attrs=['bold']))
 
-def load_plain_file(file_path):
+def load_file_content(file_path):
     with open(file_path, 'r+') as f:
-        return f.read()
-
-def load_json_file(json_file):
-    with open(json_file, 'r+') as f:
         return f.read()
 
 def load_yaml_file(yaml_file):
@@ -49,7 +45,7 @@ def get_md5(content):
 def load_file(file_path, file_suffix='.json'):
     file_suffix = file_suffix.lower()
     if file_suffix == '.json':
-        content = load_json_file(file_path)
+        content = load_file_content(file_path)
         return {
             'md5': get_md5(content),
             'json': json.loads(content)
@@ -62,7 +58,7 @@ def load_file(file_path, file_suffix='.json'):
         }
     else:
         # file_suffix == ''
-        content = load_plain_file(file_path)
+        content = load_file_content(file_path)
         return {
             'md5': get_md5(content),
             'json': content
