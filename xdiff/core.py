@@ -16,6 +16,10 @@ def compare_content(origin_data, new_data):
     if origin_data == new_data:
         return None
 
+    # ignore difference between '' and None
+    if not origin_data and not new_data:
+        return None
+
     if type(origin_data) != type(new_data):
         return [origin_data, new_data]
 
