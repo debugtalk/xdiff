@@ -27,3 +27,23 @@ optional arguments:
   --compare-folders COMPARE_FOLDERS [COMPARE_FOLDERS ...]
                         Specify origin folder and new folder to be compared.
 ```
+
+## Examples
+
+Compare two files.
+
+```text
+$ xdiff --compare-files 20170410223650/200/slug111.json 20170410202558/200/slug111.json
+```
+
+Compare files in two folders.
+
+```text
+$ xdiff --compare-folders 20170410223650 20170410202558
+```
+
+Compare files in two folders, and ignore specified keys.
+
+```text
+$ xdiff --compare-folders 20170410223650 20170410202558 --ignore-keys 'overview, faq, cover, photo, uuid, photos'
+```

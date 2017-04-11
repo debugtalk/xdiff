@@ -48,6 +48,10 @@ def compare_content(origin_data, new_data):
         all_keys_set = set(list(origin_data.keys()) + list(new_data.keys()))
 
         for key in all_keys_set:
+
+            if key in helpers.ignore_keys_list:
+                continue
+
             origin_val = origin_data.get(key, None)
             new_val = new_data.get(key, None)
             compare_result = compare_content(origin_val, new_val)

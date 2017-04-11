@@ -4,7 +4,7 @@ import sys
 import logging
 import argparse
 from .core import compare_files, compare_folder_files
-from .helpers import color_logging
+from .helpers import color_logging, set_ignore_keys
 
 def main():
     """ parse command line options and run commands.
@@ -20,6 +20,9 @@ def main():
     parser.add_argument(
         '--compare-folders', nargs='+',
         help="Specify origin folder and new folder to be compared.")
+    parser.add_argument(
+        '--ignore-keys',
+        help="Difference of ignore keys will be ignored, several keys can be joined with comma.")
 
     args = parser.parse_args()
     log_level = getattr(logging, args.log_level.upper())
@@ -29,6 +32,9 @@ def main():
 def main_compare(args):
     files = args.compare_files
     folders = args.compare_folders
+    ignore_keys = args.ignore_keys
+    if ignore_keys:
+        set_ignore_keys(ignore_keys)
 
     if files and len(files) == 2:
         origin_file, new_file = files

@@ -5,6 +5,12 @@ import hashlib
 import logging
 from termcolor import colored
 
+ignore_keys_list = []
+
+def set_ignore_keys(ignore_keys_str):
+    ignore_keys = ignore_keys_str.split(',')
+    for ignore_key in ignore_keys:
+        ignore_keys_list.append(ignore_key.strip())
 
 def color_logging(text, log_level='info', color=None):
     log_level = log_level.upper()
