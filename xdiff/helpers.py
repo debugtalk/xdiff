@@ -41,6 +41,8 @@ def load_yaml_file(yaml_file):
 
 def get_md5(content):
     if isinstance(content, str):
+        content = content.encode('utf-8')
+    elif isinstance(content, bytes):
         content = content.decode('utf-8').encode('utf-8')
     return hashlib.md5(content).hexdigest()
 
