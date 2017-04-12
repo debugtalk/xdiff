@@ -27,6 +27,11 @@ def color_logging(text, log_level='info', color=None):
         color = color or 'red'
         logging.error(colored(text, color, attrs=['bold']))
 
+def strip_if_str(value):
+    if isinstance(value, str):
+        value = value.strip()
+    return value
+
 def load_file_content(file_path):
     with open(file_path, 'r+') as f:
         return f.read()

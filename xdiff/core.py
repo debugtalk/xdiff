@@ -35,7 +35,9 @@ def compare_content(origin_data, new_data):
             new_data.extend([None] * (max_list_len - new_len))
 
         for idx in range(max_list_len):
-            compare_result = compare_content(origin_data[idx], new_data[idx])
+            origin_val = helpers.strip_if_str(origin_data[idx])
+            new_val = helpers.strip_if_str(new_data[idx])
+            compare_result = compare_content(origin_val, new_val)
             if not compare_result:
                 continue
             compare_list_result.append(compare_result)
@@ -52,8 +54,8 @@ def compare_content(origin_data, new_data):
             if key in helpers.ignore_keys_list:
                 continue
 
-            origin_val = origin_data.get(key, None)
-            new_val = new_data.get(key, None)
+            origin_val = helpers.strip_if_str(origin_data.get(key, None))
+            new_val = helpers.strip_if_str(new_data.get(key, None))
             compare_result = compare_content(origin_val, new_val)
             if not compare_result:
                 continue
